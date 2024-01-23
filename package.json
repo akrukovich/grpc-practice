@@ -1,0 +1,24 @@
+{
+  "name": "grpc-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akrukovich/grpc-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akrukovich/grpc-practice/issues"
+  },
+  "homepage": "https://github.com/akrukovich/grpc-practice#readme",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.9.14",
+    "@grpc/proto-loader": "^0.7.10"
+  }
+}
