@@ -29,3 +29,12 @@ client.Sum(request, (error, response) => {
     console.error(error);
   }
 });
+
+const call = client.PushEachNumber(request);
+call.on("data", (data) => {
+  console.log(`Steaming data:`, data.num);
+});
+
+call.on("end", (data) => {
+  console.log("Steaming ended");
+});

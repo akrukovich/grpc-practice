@@ -11,7 +11,12 @@ message SumResponse {
   int32 sum_result = 1;
 }
 
+message EachNumberResponse {
+  int32 num = 1;
+}
+
 
 service SumService {
  rpc Sum (SumRequest) returns (SumResponse);
+ rpc PushEachNumber (SumRequest) returns (stream EachNumberResponse);
 }

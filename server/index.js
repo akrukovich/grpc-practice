@@ -1,6 +1,7 @@
 const protoLoader = require("@grpc/proto-loader");
 const grpcLibrary = require("@grpc/grpc-js");
 const { join } = require("path");
+const { setTimeout } = require("node:timers/promises");
 
 const sumProto = grpcLibrary.loadPackageDefinition(
   protoLoader.loadSync(join(__dirname, "../proto/sum.proto"), {
@@ -19,7 +20,20 @@ function getServer() {
       const { num_1, num_2 } = call.request;
       callback(null, { sum_result: num_1 + num_2 });
     },
+
+    async PushEachNumber(call) {
+      const { num_1, num_2 } = call.request;
+      const sum = num_1 + num_2;
+
+      for (let i = 1; i <= sum; i++) {
+        await setTimeout(i * 1000);
+        call.write({ num: i });
+      }
+
+      call.end();
+    },
   });
+
   return server;
 }
 const routeServer = getServer();
