@@ -35,6 +35,30 @@ call.on("data", (data) => {
   console.log(`Steaming data:`, data.num);
 });
 
-call.on("end", (data) => {
-  console.log("Steaming ended");
+const streamingCall = client.LongSum((e, res) => {
+  if (e) {
+    console.error(e);
+  }
+
+  console.log(res);
 });
+
+const requests = [
+  {
+    num_1: 0,
+    num_2: 1,
+  },
+  {
+    num_1: 1,
+    num_2: 2,
+  },
+  {
+    num_1: 3,
+    num_2: 5,
+  },
+];
+
+requests.forEach((r) => {
+  streamingCall.write(r);
+});
+streamingCall.end();

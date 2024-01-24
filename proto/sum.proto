@@ -19,4 +19,5 @@ message EachNumberResponse {
 service SumService {
  rpc Sum (SumRequest) returns (SumResponse);
  rpc PushEachNumber (SumRequest) returns (stream EachNumberResponse);
+ rpc LongSum (stream SumRequest) returns ( SumResponse);
 }

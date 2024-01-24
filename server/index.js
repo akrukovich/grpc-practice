@@ -32,6 +32,18 @@ function getServer() {
 
       call.end();
     },
+
+    async longSum(call, callback) {
+      let sum = 0;
+      call.on("data", (req) => {
+        const { num_1, num_2 } = req;
+        sum += num_1 + num_2;
+      });
+
+      call.on("end", () => {
+        callback(null, { sum_result: sum });
+      });
+    },
   });
 
   return server;
