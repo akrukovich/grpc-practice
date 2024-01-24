@@ -44,6 +44,16 @@ function getServer() {
         callback(null, { sum_result: sum });
       });
     },
+
+    LongSumSeq(call) {
+      call.on("data", (request) => {
+        const { num_1, num_2 } = request;
+        const sum_result = num_1 + num_2;
+        call.write({ sum_result });
+      });
+
+      call.on("end", () => call.end());
+    },
   });
 
   return server;

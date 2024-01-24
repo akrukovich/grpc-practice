@@ -62,3 +62,15 @@ requests.forEach((r) => {
   streamingCall.write(r);
 });
 streamingCall.end();
+
+const biStreamingCall = client.LongSumSeq();
+
+biStreamingCall.on("data", (data) => {
+  console.log("bi data:", data);
+});
+
+requests.forEach((r) => {
+  biStreamingCall.write(r);
+});
+
+biStreamingCall.on("end", () => biStreamingCall.end());
